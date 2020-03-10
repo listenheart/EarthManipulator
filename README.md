@@ -6,3 +6,7 @@ osgearth 原有漫游器EarthManipulator 不支持此功能，所以需要修改
 
 
 PS: 基于OSGEarth 2.10修改的漫游器
+
+## 效果
+
+![image](https://github.com/listenheart/EarthManipulator/blob/master/video-to-gif.gif)
