@@ -1642,7 +1642,7 @@ EarthManipulator::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapt
 
             if ( _task.valid() && _task->_type != TASK_NONE )
             {
-                bool stillRunning = serviceTask();
+                bool stillRunning = serviceTask(view);
                 if ( stillRunning )
                 {
                     aa.requestContinuousUpdate( true );
@@ -2609,10 +2609,10 @@ EarthManipulator::zoom( double dx, double dy, osg::View* view)
         recalculateCenterFromLookVector();
 		if (_ga_t0.valid() && _ga_t0->getEventType() == osgGA::GUIEventAdapter::EventType::SCROLL)
 		{
-			//Êó±êµÄÎ»ÖÃ
+			//é¼ æ ‡çš„ä½ç½®
 			osg::Vec3d worldPoint;
 			bool  surce = screenToWorld(_ga_t0->getX(), _ga_t0->getY(), view, worldPoint);
-			if (surce)// Êó±êµãµÄÎ»ÖÃÔÚÇòÆ¤ÉÏ
+			if (surce)// é¼ æ ‡ç‚¹çš„ä½ç½®åœ¨çƒçš®ä¸Š
 			{
 				osg::Vec3d newCenter = worldPoint + (_center - worldPoint)*scale;
 				GeoPoint geopoint;
@@ -2622,7 +2622,7 @@ EarthManipulator::zoom( double dx, double dy, osg::View* view)
 				geopoint.toWorld(start);
 				geopoint.z() -= 2000000;
 				geopoint.toWorld(end);
-				//ÇóµÃÇòÆ¤ÉÏ½»µã¹ı³Ì£¬¼ÆËãĞÂµÄÖĞĞÄµã
+				//æ±‚å¾—çƒçš®ä¸Šäº¤ç‚¹è¿‡ç¨‹ï¼Œè®¡ç®—æ–°çš„ä¸­å¿ƒç‚¹
 				if (intersect(start, end, newCenter, normal))
 				{
 					setCenter(newCenter);
